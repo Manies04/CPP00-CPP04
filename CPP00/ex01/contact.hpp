@@ -10,7 +10,7 @@ public:
 	void	SetFName(const std::string &str);
 	void	SetLName(const std::string &str);
 	void	SetNickname(const std::string &str);
-	void	SetPhoneNumber(const std::string &str);
+	void	SetPhoneNumber();
 	void	SetDS(const std::string &str);
 
 	std::string	GetFName();

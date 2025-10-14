@@ -13,7 +13,7 @@ public:
 	void SearchContact(void);
 	void PrintList(int i);
 	void PrintInfo(int i);
-	void ExitProgram(void);
+	bool Printable(const std::string &text);
 
 private:
 	int index;

@@ -13,31 +13,65 @@ PhoneBook::~PhoneBook(void){
 	std::cout << "PhoneBook Deleted" << std::endl;
 }
 
+bool PhoneBook::Printable(const std::string &str){
+
+	int value = true;
+	for (size_t i = 0; i < str.length(); i++) {
+			if (isprint(str[i]))
+				continue;
+			else{
+				value = false;
+				break;
+			}
+			value = true;
+	}
+	return(value);
+}
+
 void PhoneBook::AddContact(){
 
 	std::string value;
 
 	if (this->index == 8)
 		this->index = 0;
-	std::cout << "Insert First Name" << std::endl;
-	std::cin >> value;
+	do {
+		std::cout << "Insert First Name" << std::endl;
+		std::cin >> value;
+	} while (!std::cin.eof() && !Printable(value));
 	this->contact[this->index].SetFName(value);
+	std::cin.ignore(10000, '\n');
+	if (std::cin.eof())
+		return;
 
-	std::cout << "Insert Last Name" << std::endl;
-	std::cin >> value;
+	
+	do {
+		std::cout << "Insert Last Name" << std::endl;
+		std::cin >> value;
+	} while (!std::cin.eof() && !Printable(value));
 	this->contact[this->index].SetLName(value);
+	std::cin.ignore(10000, '\n');
+	if (std::cin.eof())
+		return;
 
-	std::cout << "Insert NickName" << std::endl;
-	std::cin >> value;
+	do {
+		std::cout << "Insert NickName" << std::endl;
+		std::cin >> value;
+	} while (!std::cin.eof() && !Printable(value));
 	this->contact[this->index].SetNickname(value);
+	std::cin.ignore(10000, '\n');
+	if (std::cin.eof())
+		return;
 
-	std::cout << "Insert PhoneNumber" << std::endl;
-	std::cin >> value;
-	this->contact[this->index].SetPhoneNumber(value);
+	this->contact[this->index].SetPhoneNumber();// already checks inside if its num
 
-	std::cout << "Insert Darkest Secret" << std::endl;
-	std::cin >> value;
+	if (std::cin.eof())
+		return;
+	do {
+		std::cout << "Insert Darkest Secret" << std::endl;
+		std::cin >> value;
+	} while (!std::cin.eof() && !Printable(value));
 	this->contact[this->index].SetDS(value);
+	std::cin.ignore(10000, '\n');
 	
 	this->index++;
 	if(this->max_index != 8)
@@ -91,15 +125,10 @@ void PhoneBook::SearchContact(){
 	}
 	else{
 		if(display >= index){
-			std::cout << "Invalid Index, please try another one!" << std::endl;
+			std::cout << "Invalid Index!" << std::endl;
 			return ;
 		}
 		PrintInfo(display);
 	}
 
-}
-
-
-void PhoneBook::ExitProgram(){
-	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: tiade-al <tiade-al@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 14:54:52 by tiade-al          #+#    #+#             */
-/*   Updated: 2025/10/09 22:48:05 by tiade-al         ###   ########.fr       */
+/*   Updated: 2025/10/14 10:21:54 by tiade-al         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(void)
 	PhoneBook PhoneBook;
 	std::string cmd;
 
-	while(1)
+	while(!std::cin.eof())
 	{
 		std::cout << "Would you like to (ADD, SEARCH, EXIT)?" << std::endl;
 		std::cin >> cmd;
@@ -30,7 +30,7 @@ int main(void)
 		else if(cmd == "SEARCH")
 			PhoneBook.SearchContact();
 		else if(cmd == "EXIT")
-			PhoneBook.ExitProgram();
+			return(0);
 		else
 			std::cout << "Please try again!" << std::endl;
 	}
